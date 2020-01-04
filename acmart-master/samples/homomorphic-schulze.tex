@@ -1,0 +1,450 @@
+%%
+%% This is file `sample-sigchi.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% samples.dtx  (with options: `sigchi')
+%% 
+%% IMPORTANT NOTICE:
+%% 
+%% For the copyright see the source file.
+%% 
+%% Any modified versions of this file must be renamed
+%% with new filenames distinct from sample-sigchi.tex.
+%% 
+%% For distribution of the original source see the terms
+%% for copying and modification in the file samples.dtx.
+%% 
+%% This generated file may be distributed as long as the
+%% original source files, as listed above, are part of the
+%% same distribution. (The sources need not necessarily be
+%% in the same archive or directory.)
+%%
+%% The first command in your LaTeX source must be the \documentclass command.
+\documentclass[sigchi]{acmart}
+\usepackage{booktabs}
+\settopmatter{printacmref=false} % Removes citation information below abstract
+\renewcommand\footnotetextcopyrightpermission[1]{} % removes footnote with conference information in first column
+\pagestyle{plain} 
+%%
+%% \BibTeX command to typeset BibTeX logo in the docs
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    \normalfont B\kern-0.5em{\scshape i\kern-0.25em b}\kern-0.8em\TeX}}}
+
+%% Rights management information.  This information is sent to you
+%% when you complete the rights form.  These commands have SAMPLE
+%% values in them; it is your responsibility as an author to replace
+%% the commands and values with those provided to you when you
+%% complete the rights form.
+%\setcopyright{acmcopyright}
+%\copyrightyear{2018}
+%\acmYear{2018}
+%\acmDOI{10.1145/1122445.1122456}
+
+%% These commands are for a PROCEEDINGS abstract or paper.
+%\acmConference[Woodstock '18]{Woodstock '18: ACM Symposium on Neural
+%  Gaze Detection}{June 03--05, 2018}{Woodstock, NY}
+%\acmBooktitle{Woodstock '18: ACM Symposium on Neural Gaze Detection,
+%  June 03--05, 2018, Woodstock, NY}
+%\acmPrice{15.00}
+%\acmISBN{978-1-4503-XXXX-X/18/06}
+
+
+%%
+%% Submission ID.
+%% Use this when submitting an article to a sponsored event. You'll
+%% receive a unique submission ID from the organizers
+%% of the event, and this ID should be used as the parameter to this command.
+%%\acmSubmissionID{123-A56-BU3}
+
+%%
+%% The majority of ACM publications use numbered citations and
+%% references.  The command \citestyle{authoryear} switches to the
+%% "author year" style.
+%%
+%% If you are preparing content for an event
+%% sponsored by ACM SIGGRAPH, you must use the "author year" style of
+%% citations and references.
+%% Uncommenting
+%% the next command will enable that style.
+%%\citestyle{acmauthoryear}
+
+%%
+%% end of the preamble, start of the body of the document source.
+\begin{document}
+
+%%
+%% The "title" command has an optional parameter,
+%% allowing the author to define a "short title" to be used in page headers.
+\title{Verifiable Homomorphic Tallying for the Schulze Vote Counting
+Scheme}
+
+%%
+%% The "author" command and its associated commands are used to define
+%% the authors and their affiliations.
+%% Of note is the shared affiliation of the first two authors, and the
+%% "authornote" and "authornotemark" commands
+%% used to denote shared contribution to the research.
+\author{Mukesh Tiwari}
+%\authornote{Both authors contributed equally to this research.}
+\email{mukesh.tiwari@anu.edu.au}
+\affiliation{%
+  \institution{Research School of Computer Science, Australian National University}
+  \city{Canberra}
+}
+
+\author{Dirk Pattinson}
+\email{dirk.pattinson@anu.edu.au}
+\affiliation{%
+ \institution{Research School of Computer Science, Australian National University}
+  \city{Canberra}
+  }
+
+
+\author{Thomas Haines}
+\email{thomas.haines@ntnu.no}
+\affiliation{%
+  \institution{Dept of Mathematical Sciences, Norwegian University of Science and Technology, Trondheim, Norway}
+ }
+%%
+%% By default, the full list of authors will be used in the page
+%% headers. Often, this list is too long, and will overlap
+%% other information printed in the page headers. This command allows
+%% the author to define a more concise list
+%% of authors' names for this purpose.
+\renewcommand{\shortauthors}{Trovato and Tobin, et al.}
+
+%%
+%% The abstract is a short summary of the work to be presented in the
+%% article.
+\begin{abstract}
+ The encryption of ballots is crucial to maintaining integrity and 
+anonymity in electronic voting schemes. It enables, amongst other 
+things, each voter to verify that their encrypted ballot has been 
+recorded as cast, by checking their ballot against a bulletin board. 
+
+We present a verifiable homomorphic tallying scheme for the Schulze 
+method that allows verification of the correctness of the count---on the 
+basis of encrypted ballots---that only reveals the final tally. We 
+achieve verifiability by using zero knowledge proofs for ballot 
+validity and honest decryption of the final tally. Our formalisation 
+takes places inside the Coq theorem prover and is based on an 
+axiomatisation of cryptogtaphic primitives, and our main result is 
+the correctness of homomorphic tallying. We then instantiate 
+these primitives using an external library and show the feasibility 
+of our approach by means of case studies.
+\end{abstract}
+
+%%
+%% The code below is generated by the tool at http://dl.acm.org/ccs.cfm.
+%% Please copy and paste the code instead of the example below.
+%%
+%\begin{CCSXML}
+%<ccs2012>
+% <concept>
+%  <concept_id>10010520.10010553.10010562</concept_id>
+%  <concept_desc>Computer systems organization~Embedded systems</concept_desc>
+%  <concept_significance>500</concept_significance>
+% </concept>
+% <concept>
+%  <concept_id>10010520.10010575.10010755</concept_id>
+%  <concept_desc>Computer systems organization~Redundancy</concept_desc>
+%  <concept_significance>300</concept_significance>
+% </concept>
+% <concept>
+%  <concept_id>10010520.10010553.10010554</concept_id>
+%  <concept_desc>Computer systems organization~Robotics</concept_desc>
+%  <concept_significance>100</concept_significance>
+% </concept>
+% <concept>
+%  <concept_id>10003033.10003083.10003095</concept_id>
+%  <concept_desc>Networks~Network reliability</concept_desc>
+%  <concept_significance>100</concept_significance>
+% </concept>
+%</ccs2012>
+%\end{CCSXML}
+
+%\ccsdesc[500]{Computer systems organization~Embedded systems}
+%\ccsdesc[300]{Computer systems organization~Redundancy}
+%\ccsdesc{Computer systems organization~Robotics}
+%\ccsdesc[100]{Networks~Network reliability}
+%
+%%%
+%%% Keywords. The author(s) should pick words that accurately describe
+%%% the work being presented. Separate the keywords with commas.
+%\keywords{datasets, neural networks, gaze detection, text tagging}
+
+
+%%
+%% This command processes the author and affiliation and title
+%% information and builds the first part of the formatted document.
+\maketitle
+
+\section{Introduction}
+
+Since the introduction of secret ballot by Australians in 1855, paper (ballots) are
+widely used around the world to record the preferences of eligible voters. 
+Paper ballots provide three important ingredient, correctness, privacy,
+and verifiability, for any democratic election. However, the paper ballot election poses various other 
+challenges, e.g. slow for large democracies like India, error prone for complex
+ voting method like single transferable vote, and poses operational challenges for
+massive countries like Australia. In order to solve these problems and various
+ others, many countries are adopting electronic voting. However, electronic
+voting has a whole new set of problems. In most cases, the software program
+ used to conduct the election has numerous problems, including, but no limited to, 
+ counting bugs, ballot identification, etc. Moreover, these software programs are
+ treated as commercial in confidence \citep{AEC:2013:LMM} and are not allowed to be inspected by general
+ member of public. As a consequence, the result produced by these software
+ programs can not be substantiated with
+verifiable evidence of their correctness while retaining the secrecy
+of the individual ballot \cite{Bernhard:2017:PES}.  Technically, the
+notion of ``verifiable evidence'' is captured by the term 
+\emph{end-to-end (E2E) verifiability}, that is 
+\begin{itemize}
+  \item Cast-as-intended: every voter can verify that their ballot was cast as intended.
+  \item Collected-as-cast: every voter can verify that their ballot was collected as
+  cast
+  \item Tallied-as-cast: everyone can verify final result on the basis of the
+  collected ballots.
+\end{itemize}
+
+
+
+The combination of privacy and verifiability can be realised using cryptographic techniques, where
+encrypted ballots (that the voters themselves cannot decrypt) are
+published on a bulletin board, and the votes are then processed, and
+the correctness of the final tally is substantiated, using
+homomorphic encryption \cite{Hirt:2000:ERF} and verifiable shuffling
+\cite{Bayer:2012:EZK}.  Verifiability can then be guaranteed by 
+means of Zero Knowledge Proofs (ZKP),
+first studied by Goldwasser, Micali, and Rackoff~\cite{Goldwasser:1985:STOC}.
+%Informally, a ZKP is a probabilistic and interactive proof where one
+%entity interacts with another such that the interaction provides
+%no information other than that the statement being proved is true with
+%overwhelming probability. 
+%Later results~\cite{Ben-Or:1988:CRYPTO,Goldreich:1991:ACM}
+%showed that  all problems for which solutions can be efficiently
+%verified have zero knowledge proofs
+%(In practice, sigma protocol is used prove the knowledge of witness for some public input, 
+%and it is required to be zero-knowledge against the honest verifier).
+
+%We addresses the problem of verifiable homomorphic tallying
+%for a preferential voting scheme, the Schulze Method. We show
+%how it can be implemented in a theorem prover to
+%guarantee both provably correct and verifiable counting on the basis
+%of encrypted ballots, relative to an axiomatisation of the
+%cryptographic primitives. We then obtain, via program extraction, a
+%provably correct implementation of vote counting, that we turn
+%into executable code by providing implementations of the primitives
+%based on a standard cryptographic library. We conclude by presenting
+%experimental results, and discuss trust the trust base, security and
+%privacy as well as the applicability of our work to real-world
+%scenarios. 
+
+\section{Schulze Method} 
+	The Schulze Method \citep{Schulze:2011:NMC} is a vote counting scheme
+that elects a single winner, based on preferential votes. The method can be
+described as:
+%The method itself rests on the relative 
+%\emph{margins} between two candidates, i.e. the number of
+%voters that prefer one candidate over another.  The margin induces
+%an ordering between candidates, where a candidate $c$ is more
+%preferred than $d$, if more voters prefer $c$ over $d$ than 
+%vice versa. One can construct simple examples (see e.g.
+%\citep{Rivest:2010:OSW}) where this order does not have a maximal
+%element (a so-called \emph{Condorcet Winner}). Schulze's observation
+%is that this ordering can be made transitive by considering
+%sequences of candidates (called \emph{paths}). Given candidates $c$
+%and $d$, a \emph{path} between $c$ and $d$ is a sequence of candidates
+% $p = (c, c_1,\dots, c_n, d)$ that joins $c$ and $d$, and 
+% the \emph{strength} of a
+%path is the minimal margin between adjacent nodes. This induces the
+%\emph{generalised margin} between candidates $c$ and $d$ as the
+%strength of the strongest path that joins $c$ and $d$. A candidate
+%$c$ then wins a Schulze count if the generalised margin between $c$
+%and any other candidate $d$ is at least as large as the generalised
+%margin between $d$ and $c$. More concretely:
+
+\begin{itemize}
+
+\item Consider an election with a set of $m$ candidates
+ $C$ = $\{c1,\dots,cm\}$, and 
+	a set of $n$ votes $P$ = $\{b1,\dots,bn\}$. A vote
+	is represented as function $b: C \rightarrow \mathbb{N}$ that 
+	assigns natural 
+	number (the preference) to each candidate. We recover a strict linear  
+	preorder $<_b$ on candidates by setting $c <_b d$ if $b(c) > b(d)$. 
+	
+\item Given a set of ballots $P$ and candidate set $C$, we construct graph $G$ based on the margin function $m: C \times C \to \mathbb{Z}$. Given two candidates $c, d \in C$,
+the \emph{margin} of $c$ over $d$ is
+the number of voters that prefer $c$ over $d$, minus the number of voters that prefer $d$ over $c$. 
+In symbols:
+\[
+  m(c, d) = \sharp \lbrace b \in P \mid c >_b d \rbrace -
+            \sharp \lbrace b \in P \mid d >_b c \rbrace
+\] where $\sharp$ denotes cardinality and $>_b$ is the strict
+(preference) ordering given by the ballot $b \in P$.
+
+
+
+
+
+\item A directed \emph{path} in the graph, $G$, from
+candidate $c$ to candidate $d$ is a sequence $p \equiv c_0, \dots, c_{n+1}$
+of candidates with $c_0 = c$ and $c_{n+1} = d$ ($n \geq 0$), and the
+\emph{strength}, st, of path, $p$, is the minimum margin of adjacent
+nodes, i.e.
+\[ st(c_0, \dots, c_{n+1}) = \min \lbrace m (c_i, c_{i+1}) \mid 0
+\leq i \leq n \rbrace. \]
+\item For candidates $c$ and $d$, let $M(c, d)$ denote the maximum strength, or generalized margin of a path
+	from $c$ to$d$ i.e. 
+	\[ M(c, d) = \max \lbrace st (p) : \text{p is path from c to d in G} \rbrace\]
+	
+\item The winning set is defined as 
+ \[ W =  \lbrace c \in C : \forall d \in C \setminus \{c\}, M (c, d) \geq M (d, c) \rbrace\]
+
+\end{itemize}
+  
+  
+Now we describe the homomorphic Schulze method in short. 
+We first homomorphically compute the margin matrix from encrypted ballots, 
+and then compute winners on the basis of the (decrypted) margin. 
+The computation also
+produces a verifiable certificate that leaks no information about
+individual ballots other than the (final) margin matrix, which in
+turn leaks no information about individual ballots if the number of
+voters is large enough. 
+
+\smallskip\noindent\emph{Format of Ballots.} In preferential voting
+schemes, ballots are rank-ordered lists of candidates. For the
+Schulze Method, we require that all candidates are ranked, and two
+candidates may be given the same rank. That is, a ballot is most
+naturally represented as a function $b: C \to \mathbb{N}$ that assigns a
+numerical rank to each candidate, and the computation of the margin
+amounts to computing the sum
+\[ m(x, y) = \sum_{b \in B} \begin{cases} +1 & b(x) > b(y) \\ 0 &
+b(x) = b(y) \\ -1 & b(x) < b(y) \end{cases} \]
+where $B$ is the multi-set of ballots, and each $b \in B$ is a
+ranking function $b: C \to \mathbb{N}$ over a (finite) set $C$ of
+candidates. 
+
+We note that this representation of ballots is not well suited for
+homomorphic computation of the margin matrix as practically feasible
+homomorphic encryption schemes do not support comparison operators
+and case distinctions as used in the formula above. 
+
+We instead represent ballots as matrices
+$b(x, y)$ where $b(x, y) = +1$ if $x$ is preferred
+over $y$, $b(x, y) = -1$ if $y$ is preferred over $x$ and $b(x, y) =
+0$ if $x$ and $y$ are equally preferred.
+
+While the advantage of the first representation is that each ranking
+function is necessarily a valid ranking, the advantage of the matrix 
+representation is that the computation of
+the margin matrix is simple, that is
+\[ m(c, d) = \sum_{b \in B} b(x, y) \]
+where $B$ is the multi-set of ballots (in matrix form), and can
+moreover be transferred to the encrypted setting in a straight
+forward way: if ballots are matrices $e(x,y)$ where $e(x,y)$ is the
+encryption of an integer in $\lbrace -1, 0, 1 \rbrace$, then
+\begin{equation}\label{eqn:enc-mm}
+\encm = \bigoplus_{\encb \in \EncB} \encb(x, y) 
+\end{equation}
+where $\oplus$ denotes homomorphic addition, $\encb$ is an encrypted
+ballot in matrix form (i.e. decrypting $\encb(x, y)$ indicates
+whether $x$ is preferred over $y$), and $\EncB$ is the multi-set of
+encrypted ballots. The disadvantage is that we need to verify that a
+matrix ballot is indeed valid, that is
+\begin{itemize}
+\item that the decryption of $\encb(x, y)$ is indeed one of $1, 0$ or
+$-1$
+\item that $\encb$ indeed corresponds to a ranking function.
+\end{itemize}
+
+\noindent
+%Indeed, to achieve verifiability, we not only need \emph{verify}
+%that a ballot is valid, we also need to \emph{evidence} its validity
+%(or otherwise) in the certificate. To witness the validity (or otherwise) of a ballot by generating a 
+%permutation $\pi$ which is used to shuffle every row and column of the ballot.
+%We hide $\pi$ by committing it using Pedersen's 
+%commitment scheme 
+%and record the commitment $c_{\pi}$ in the certificate. However, for the binding step, rather 
+%than opening $\pi$ we generate a zero knowledge proof, $zkp_{\pi}$, 
+%using $\pi$ and $c_{\pi}$, which can 
+%be  used to prove that $c_{\pi}$ is indeed the commitment to some permutation
+%used in the (commitment consistent) shuffling 
+% without being opened \cite{Wikstrom:2009:CPS}. We can now use the
+% permutation that we have committed to for 
+%shuffling each row and column of a ballot, and evidence the
+%correctness of the shuffle via a zero knowledge proof.
+%
+Indeed, to achieve verifiability, we not only need \emph{verify}
+that a ballot is valid, we also need to \emph{evidence} its validity
+(or otherwise) in the certificate. In order to decide the validity of 
+any ballot, $b$, we first generate a random permutation matrix, $\pi$,
+and commit each column of $\pi$ using the Pedersen's commitment scheme producing 
+a list of commitments, $c_{\pi}$ (hiding phase).
+Moreover, we keep the $\pi$ secret and publish the $c_{\pi}$ (make it public). 
+Now we shuffle each row of $b$ by $\pi$ producing a row-shuffled 
+ballot, $b_{r\pi}$, and a shuffle zero-knowledge proof, $b_{zkpr\pi}$. Subsequently, 
+every column of the ballot $b_{r\pi}$
+is shuffled by the same (secret) permutation $\pi$ producing a 
+column-shuffled ballot, $b_{rc\pi}$, and a shuffle zero-knowledge proof, $b_{zkprc\pi}$. 
+Finally, we decrypt $b_{rc\pi}$ producing a decrypted ballot, $decb_{rc\pi}$, 
+and zero-knowledge proof of honest decryption, $decb_{zkprc\pi}$. 
+Finally, we publish the whole data (except the secret permutation
+$\pi$)  on the bulletin board (scrutiny sheet). Couple of important 
+points to be noted:
+\begin{itemize}
+\item shuffle introduces re-encryption, so $\pi$ can not be guess from the data $b$ and 
+         $b_{r\pi}$, or from the commitment $c_{\pi}$
+ \item every claim is augmented with a corresponding zero-knowledge-proof to make it verifiable
+ \item for the binding step in Pedersen's commitment, rather than opening $\pi$ 
+ 		we generate a zero knowledge proof, $zkp_{\pi}$, using $\pi$ and $c_{\pi}$ which can 
+		be  used to prove that $c_{\pi}$ is indeed the commitment to some permutation
+		which has been used in the (commitment consistent) shuffling without being opened \cite{Wikstrom:2009:CPS}.
+\end{itemize}
+
+
+  
+We have shown that  Schulze method can be implemented in a theorem prover to
+guarantee both provably correct and verifiable counting on the basis
+of encrypted ballots, relative to an axiomatisation of the
+cryptographic primitives. We then obtain, via program extraction, a
+provably correct implementation of vote counting, that we turn
+into executable code by providing implementations of the primitives
+based on a standard cryptographic library.  Finally, in a nutshell, we achieve:
+(i) \textit{correctness} by formally specifying the Schulze method  and prove its correctness properties
+  inside the Coq theorem prover, (ii) \textit{privacy} by using homomorphic encryption to compute the 
+  final tally without decryption any individual ballot, and (iii) \textit{verifiability} by tabulating the
+   relevant data of election (scrutiny-sheet/certificate).
+   We achieve verifiability in encrypted ballot counting by
+   augmenting the scrutiny sheet with zero-knowledge-proof for the each claim we make during the 
+   counting, which can  later be checked by any auditor. 
+   
+
+%\begin{itemize}
+% \item \textit{Correctness} by formally specifying the Schulze method  and prove its correctness properties
+%  inside the Coq theorem prover. 
+% \item \textit{Correctness} by formally specifying the Schulze method  and prove its correctness properties
+%  inside the Coq theorem prover. 
+%\item \textit{Verifiability} by tabulating the relevant data of election (scrutiny-sheet/certificate).
+%   We achieve verifiability in encrypted ballot counting by
+%   augmenting the scrutiny sheet with zero-knowledge-proof for the each claim we make during the 
+%   counting, which can  later be checked by any auditor.  
+%\end{itemize}
+
+%%
+%% The next two lines define the bibliography style to be used, and
+%% the bibliography file.
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{sample-base}
+
+
+
+\end{document}
+\endinput
+%%
+%% End of file `sample-sigchi.tex'.
