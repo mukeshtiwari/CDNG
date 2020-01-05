@@ -124,14 +124,13 @@ Scheme}
 anonymity in electronic voting schemes. It enables, amongst other 
 things, each voter to verify that their encrypted ballot has been 
 recorded as cast, by checking their ballot against a bulletin board. 
-
 We present a verifiable homomorphic tallying scheme for the Schulze 
 method that allows verification of the correctness of the count---on the 
 basis of encrypted ballots---that only reveals the final tally. We 
 achieve verifiability by using zero knowledge proofs for ballot 
 validity and honest decryption of the final tally. Our formalisation 
 takes places inside the Coq theorem prover and is based on an 
-axiomatisation of cryptogtaphic primitives, and our main result is 
+axiomatisation of cryptographic primitives, and our main result is 
 the correctness of homomorphic tallying. We then instantiate 
 these primitives using an external library and show the feasibility 
 of our approach by means of case studies.
@@ -299,8 +298,7 @@ nodes, i.e.
 \[ st(c_0, \dots, c_{n+1}) = \min \lbrace m (c_i, c_{i+1}) \mid 0
 \leq i \leq n \rbrace. \]
 \item For candidates $c$ and $d$, let $M(c, d)$ denote the maximum strength, or generalized margin of a path
-	from $c$ to$d$ i.e. 
-	\[ M(c, d) = \max \lbrace st (p) : \text{p is path from c to d in G} \rbrace\]
+	from $c$ to $d$ i.e.  \[ M(c, d) = \max \lbrace st (p) : \text{p is path from c to d in G} \rbrace\]
 	
 \item The winning set is defined as 
  \[ W =  \lbrace c \in C : \forall d \in C \setminus \{c\}, M (c, d) \geq M (d, c) \rbrace\]
@@ -308,9 +306,10 @@ nodes, i.e.
 \end{itemize}
   
   
-Now we describe the homomorphic Schulze method in short. 
-We first homomorphically compute the margin matrix from encrypted ballots, 
-and then compute winners on the basis of the (decrypted) margin. 
+Now, we describe the homomorphic Schulze method in short. 
+We first homomorphically compute the margin matrix from 
+(valid) encrypted ballots, 
+and then compute winners on the basis of the (decrypted) margin \cite{Pattinson:2017:SVE}
 The computation also
 produces a verifiable certificate that leaks no information about
 individual ballots other than the (final) margin matrix, which in
@@ -364,77 +363,53 @@ $-1$
 \end{itemize}
 
 \noindent
-%Indeed, to achieve verifiability, we not only need \emph{verify}
-%that a ballot is valid, we also need to \emph{evidence} its validity
-%(or otherwise) in the certificate. To witness the validity (or otherwise) of a ballot by generating a 
-%permutation $\pi$ which is used to shuffle every row and column of the ballot.
-%We hide $\pi$ by committing it using Pedersen's 
-%commitment scheme 
-%and record the commitment $c_{\pi}$ in the certificate. However, for the binding step, rather 
-%than opening $\pi$ we generate a zero knowledge proof, $zkp_{\pi}$, 
-%using $\pi$ and $c_{\pi}$, which can 
-%be  used to prove that $c_{\pi}$ is indeed the commitment to some permutation
-%used in the (commitment consistent) shuffling 
-% without being opened \cite{Wikstrom:2009:CPS}. We can now use the
-% permutation that we have committed to for 
-%shuffling each row and column of a ballot, and evidence the
-%correctness of the shuffle via a zero knowledge proof.
-%
 Indeed, to achieve verifiability, we not only need \emph{verify}
 that a ballot is valid, we also need to \emph{evidence} its validity
 (or otherwise) in the certificate. In order to decide the validity of 
-any ballot, $b$, we first generate a random permutation matrix, $\pi$,
-and commit each column of $\pi$ using the Pedersen's commitment scheme producing 
+a ballot, $b$, we first generate a random permutation matrix, $\pi$,
+and commit each column of $\pi$ using the Pedersen commitment scheme producing 
 a list of commitments, $c_{\pi}$ (hiding phase).
 Moreover, we keep the $\pi$ secret and publish the $c_{\pi}$ (make it public). 
-Now we shuffle each row of $b$ by $\pi$ producing a row-shuffled 
+We shuffle each row of $b$ by $\pi$ producing a row-shuffled 
 ballot, $b_{r\pi}$, and a shuffle zero-knowledge proof, $b_{zkpr\pi}$. Subsequently, 
 every column of the ballot $b_{r\pi}$
 is shuffled by the same (secret) permutation $\pi$ producing a 
 column-shuffled ballot, $b_{rc\pi}$, and a shuffle zero-knowledge proof, $b_{zkprc\pi}$. 
 Finally, we decrypt $b_{rc\pi}$ producing a decrypted ballot, $decb_{rc\pi}$, 
-and zero-knowledge proof of honest decryption, $decb_{zkprc\pi}$. 
+and a honest decryption zero-knowledge proof, $decb_{zkprc\pi}$. We have
+formally established that if the ballot $decb_{zkprc\pi}$ is 
+\emph{valid}, then the ballot $b$ is valid as well, and vice versa. 
+Only the valid ballots contribute to the final homomorphic margin matrix. 
 Finally, we publish the whole data (except the secret permutation
-$\pi$)  on the bulletin board (scrutiny sheet). Couple of important 
+$\pi$)  on the bulletin board (scrutiny sheet) to establish the verifiablity. Couple of important 
 points to be noted:
 \begin{itemize}
-\item shuffle introduces re-encryption, so $\pi$ can not be guess from the data $b$ and 
+\item shuffle introduces re-encryption, so $\pi$ can not be guess from the ballot $b$ and 
          $b_{r\pi}$, or from the commitment $c_{\pi}$
  \item every claim is augmented with a corresponding zero-knowledge-proof to make it verifiable
- \item for the binding step in Pedersen's commitment, rather than opening $\pi$ 
+ \item for the binding step in Pedersen commitment, rather than opening $\pi$ 
  		we generate a zero knowledge proof, $zkp_{\pi}$, using $\pi$ and $c_{\pi}$ which can 
 		be  used to prove that $c_{\pi}$ is indeed the commitment to some permutation
 		which has been used in the (commitment consistent) shuffling without being opened \cite{Wikstrom:2009:CPS}.
 \end{itemize}
 
 
-  
 We have shown that  Schulze method can be implemented in a theorem prover to
 guarantee both provably correct and verifiable counting on the basis
-of encrypted ballots, relative to an axiomatisation of the
-cryptographic primitives. We then obtain, via program extraction, a
-provably correct implementation of vote counting, that we turn
-into executable code by providing implementations of the primitives
-based on a standard cryptographic library.  Finally, in a nutshell, we achieve:
+of encrypted ballots, relative to an axiomatisation of the cryptographic primitives.
+%cryptographic primitives. We then obtain, via program extraction, a
+%provably correct implementation of vote counting, that we turn
+%into executable code by providing implementations of the primitives
+%based on a standard cryptographic library.  
+Finally, in a nutshell, we achieve:
 (i) \textit{correctness} by formally specifying the Schulze method  and prove its correctness properties
   inside the Coq theorem prover, (ii) \textit{privacy} by using homomorphic encryption to compute the 
-  final tally without decryption any individual ballot, and (iii) \textit{verifiability} by tabulating the
-   relevant data of election (scrutiny-sheet/certificate).
+  final tally without decrypting any individual ballot, and (iii) \textit{verifiability} by tabulating the
+   relevant data of election (we call it scrutiny-sheet/certificate).
    We achieve verifiability in encrypted ballot counting by
    augmenting the scrutiny sheet with zero-knowledge-proof for the each claim we make during the 
    counting, which can  later be checked by any auditor. 
    
-
-%\begin{itemize}
-% \item \textit{Correctness} by formally specifying the Schulze method  and prove its correctness properties
-%  inside the Coq theorem prover. 
-% \item \textit{Correctness} by formally specifying the Schulze method  and prove its correctness properties
-%  inside the Coq theorem prover. 
-%\item \textit{Verifiability} by tabulating the relevant data of election (scrutiny-sheet/certificate).
-%   We achieve verifiability in encrypted ballot counting by
-%   augmenting the scrutiny sheet with zero-knowledge-proof for the each claim we make during the 
-%   counting, which can  later be checked by any auditor.  
-%\end{itemize}
 
 %%
 %% The next two lines define the bibliography style to be used, and
